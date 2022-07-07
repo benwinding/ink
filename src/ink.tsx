@@ -1,6 +1,7 @@
 import React, {ReactNode} from 'react';
 import {throttle, DebouncedFunc} from 'lodash';
 import logUpdate, {LogUpdate} from './log-update';
+import ansiEscapes from 'ansi-escapes';
 import originalIsCI from 'is-ci';
 import autoBind from 'auto-bind';
 import reconciler from './reconciler';
@@ -11,7 +12,6 @@ import * as dom from './dom';
 import {FiberRoot} from 'react-reconciler';
 import instances from './instances';
 import App from './components/App';
-import ansiEscapes from 'ansi-escapes';
 
 const isCI = process.env.CI === 'false' ? false : originalIsCI;
 const noop = () => {};
