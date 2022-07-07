@@ -13,7 +13,6 @@ import {
 	setTextNodeValue,
 	createNode,
 	setAttribute,
-	DOMNode,
 	DOMNodeAttribute,
 	TextNode,
 	ElementNames,
@@ -26,8 +25,22 @@ import {OutputTransformer} from './render-node-to-output';
 // accidentally breaking other third-party code.
 // See https://github.com/vadimdemedes/ink/issues/384
 if (process.env.DEV === 'true') {
-	// eslint-disable-next-line import/no-unassigned-import
-	require('./devtools');
+	try {
+		// eslint-disable-next-line import/no-unassigned-import
+		require('./devtools');
+	} catch (error) {
+		if (error.code === 'MODULE_NOT_FOUND') {
+			console.warn(
+				`
+Debugging with React Devtools requires \`react-devtools-core\` dependency to be installed.
+
+$ npm install --save-dev react-devtools-core
+				`.trim() + '\n'
+			);
+		} else {
+			throw error;
+		}
+	}
 }
 
 const cleanupYogaNode = (node?: Yoga.YogaNode): void => {
@@ -48,7 +61,8 @@ export default createReconciler<
 	Props,
 	DOMElement,
 	DOMElement,
-	DOMNode,
+	TextNode,
+	DOMElement,
 	unknown,
 	unknown,
 	HostContext,
@@ -64,7 +78,10 @@ export default createReconciler<
 	getRootHostContext: () => ({
 		isInsideText: false
 	}),
-	prepareForCommit: () => {},
+	prepareForCommit: () => null,
+	preparePortalMount: () => null,
+	clearContainer: () => false,
+	shouldDeprioritizeSubtree: () => false,
 	resetAfterCommit: rootNode => {
 		// Since renders are throttled at the instance level and <Static> component children
 		// are rendered only once and then get deleted, we need an escape hatch to
@@ -131,17 +148,17 @@ export default createReconciler<
 		return createTextNode(text);
 	},
 	resetTextContent: () => {},
-	hideTextInstance: (node: TextNode): void => {
+	hideTextInstance: node => {
 		setTextNodeValue(node, '');
 	},
-	unhideTextInstance: (node: TextNode, text: string): void => {
+	unhideTextInstance: (node, text) => {
 		setTextNodeValue(node, text);
 	},
 	getPublicInstance: instance => instance,
-	hideInstance: (node: DOMElement): void => {
+	hideInstance: node => {
 		node.yogaNode?.setDisplay(Yoga.DISPLAY_NONE);
 	},
-	unhideInstance: (node: DOMElement): void => {
+	unhideInstance: node => {
 		node.yogaNode?.setDisplay(Yoga.DISPLAY_FLEX);
 	},
 	appendInitialChild: appendChildNode,
@@ -236,7 +253,7 @@ export default createReconciler<
 		}
 	},
 	commitTextUpdate: (node, _oldText, newText) => {
-		setTextNodeValue(node as TextNode, newText);
+		setTextNodeValue(node, newText);
 	},
 	removeChild: (node, removeNode) => {
 		removeChildNode(node, removeNode);

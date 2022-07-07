@@ -1,11 +1,15 @@
-<h1 align="center">
+[![](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
+
+---
+
+<div align="center">
 	<br>
 	<br>
-	<img width="200" alt="Ink" src="media/logo.png">
+	<img width="240" alt="Ink" src="media/logo.png">
 	<br>
 	<br>
 	<br>
-</h1>
+</div>
 
 > React for CLIs. Build and test your CLI output using components.
 
@@ -22,10 +26,37 @@ Only Ink's methods will be documented in this readme.
 
 **Note:** This is documentation for Ink 3. If you're looking for docs on Ink 2, check out [this release](https://github.com/vadimdemedes/ink/tree/v2.7.1). There's also a [migration guide](migrate.md) from Ink 2 available.
 
+---
+
+<div align="center">
+	<p>
+		<p>
+			<sup>
+				<a href="https://opencollective.com/vadimdemedes">My open source work is supported by the community ❤️</a>
+			</sup>
+		</p>
+		<sup>Special thanks to:</sup>
+		<br>
+		<a href="https://workos.com/?utm_campaign=github_repo&utm_medium=referral&utm_content=ink&utm_source=github">
+			<div>
+				<img src="https://vadimdemedes.com/github/workos.svg" width="200" alt="WorkOS">
+			</div>
+			<b>Your app, enterprise-ready.</b>
+			<div>
+				<sub>Start selling to enterprise customers with just a few lines of code.</sub>
+				<br>
+				<sup>Add Single Sign-On (and more) in minutes instead of months.</sup>
+			</div>
+		</a>
+	</p>
+	<br>
+	<br>
+</div>
+
 ## Install
 
-```
-$ npm install ink react
+```sh
+npm install ink react
 ```
 
 ## Usage
@@ -60,9 +91,9 @@ Feel free to play around with the code and fork this repl at [https://repl.it/@v
 
 ## Who's Using Ink?
 
+- [Cloudflare's Wrangler](https://github.com/cloudflare/wrangler2) - The CLI for Cloudflare Workers.
 - [Gatsby](https://www.gatsbyjs.org) - Gatsby is a modern web framework for blazing fast websites.
 - [tap](https://node-tap.org) - A Test-Anything-Protocol library for JavaScript.
-- [Yarn 2](https://yarnpkg.com) - Fast, reliable, and secure dependency management for JavaScript.
 - [Terraform CDK](https://github.com/hashicorp/terraform-cdk) - CDK (Cloud Development Kit) for HashiCorp Terraform.
 - [Twilio's SIGNAL](https://github.com/twilio-labs/plugin-signal2020) - CLI for Twilio's SIGNAL conference. [Blog post](https://www.twilio.com/blog/building-conference-cli-in-react).
 - [Typewriter](https://github.com/segmentio/typewriter) - Generates strongly-typed [Segment](https://segment.com) analytics clients from arbitrary JSON Schema.
@@ -71,6 +102,7 @@ Feel free to play around with the code and fork this repl at [https://repl.it/@v
 - [Blitz](https://blitzjs.com) - The Fullstack React Framework.
 - [New York Times](https://github.com/nytimes/kyt) - NYT uses Ink `kyt` - a toolkit that encapsulates and manages the configuration for web apps.
 - [tink](https://github.com/npm/tink) - Next-generation runtime and package manager.
+- [Inkle](https://github.com/jrr/inkle) - Wordle in your Terminal.
 - [loki](https://github.com/oblador/loki) - Visual Regression Testing for Storybook.
 - [Bit](https://github.com/teambit/bit) - Build, distribute and collaborate on components.
 - [Remirror](https://github.com/remirror/remirror) - Your friendly, world-class editor toolkit.
@@ -89,6 +121,10 @@ Feel free to play around with the code and fork this repl at [https://repl.it/@v
 - [git-contrib-calendar](https://github.com/giannisp/git-contrib-calendar) - Display a contributions calendar for any git repository.
 - [gitgud](https://github.com/GitGud-org/GitGud) - An interactive command-line GUI for Git.
 - [Autarky](https://github.com/pranshuchittora/autarky) - An interactive CLI to find and delete old `node_modules` directories in order to free up disk space.
+- [fast-cli](https://github.com/sindresorhus/fast-cli) - Test your download and upload speed.
+- [tasuku](https://github.com/privatenumber/tasuku) - Minimal task runner.
+- [mnswpr](https://github.com/mordv/mnswpr) - Minesweeper game in your terminal.
+- [lrn](https://github.com/krychu/lrn) - Command-line tool for learning by repetition.
 
 ## Contents
 
@@ -119,16 +155,16 @@ Feel free to play around with the code and fork this repl at [https://repl.it/@v
 
 Use [create-ink-app](https://github.com/vadimdemedes/create-ink-app) to quickly scaffold a new Ink-based CLI.
 
-```
-$ mkdir my-ink-cli
-$ cd my-ink-cli
-$ npx create-ink-app
+```sh
+mkdir my-ink-cli
+cd my-ink-cli
+npx create-ink-app
 ```
 
 Alternatively, create a TypeScript project:
 
-```
-$ npx create-ink-app --typescript
+```sh
+npx create-ink-app --typescript
 ```
 
 <details><summary>Manual setup</summary>
@@ -138,8 +174,8 @@ Ink requires the same Babel setup as you would do for regular React-based apps i
 Set up Babel with a React preset to ensure all examples in this readme work as expected.
 After [installing Babel](https://babeljs.io/docs/en/usage), install `@babel/preset-react` and insert the following configuration in `babel.config.json`:
 
-```
-$ npm install --save-dev @babel/preset-react
+```sh
+npm install --save-dev @babel/preset-react
 ```
 
 ```json
@@ -171,14 +207,14 @@ render(<Demo />);
 
 Then, transpile this file with Babel:
 
-```
-$ npx babel source.js -o cli.js
+```sh
+npx babel source.js -o cli.js
 ```
 
 Now you can run `cli.js` with Node.js:
 
-```
-$ node cli
+```sh
+node cli
 ```
 
 If you don't like transpiling files during development, you can use [import-jsx](https://github.com/vadimdemedes/import-jsx) to `require()` a JSX file and transpile it on the fly.
@@ -352,7 +388,7 @@ import {render, Box, Text} from 'ink';
 const Example = () => (
 	<Box margin={2}>
 		<Text>This is a box with margin</Text>
-	</Box>;
+	</Box>
 );
 
 render(<Example />);
@@ -1441,6 +1477,13 @@ Default: `true`
 Enable or disable this component's focus, while still maintaining its position in the list of focusable components.
 This is useful for inputs that are temporarily disabled.
 
+##### id
+
+Type: `string`\
+Required: `false`
+
+Set a component's focus ID, which can be used to programmatically focus the component. This is useful for large interfaces with many focusable elements, to avoid having to cycle through all of them.
+
 ```jsx
 import {render, useFocus, Text} from 'ink';
 
@@ -1453,7 +1496,7 @@ const Example = () => {
 render(<Example />);
 ```
 
-See example in [examples/use-focus](examples/use-focus/use-focus.js).
+See example in [examples/use-focus](examples/use-focus/use-focus.js) and [examples/use-focus-with-id](examples/use-focus-with-id/use-focus-with-id.js).
 
 ### useFocusManager()
 
@@ -1537,6 +1580,32 @@ const Example = () => {
 	useEffect(() => {
 		focusPrevious();
 	}, []);
+
+	return …
+};
+```
+
+#### focus(id)
+
+##### id
+
+Type: `string`
+
+Switch focus to the component with the given [`id`](#id).
+If there's no component with that ID, focus will be given to the next focusable component.
+
+```js
+import {useFocusManager, useInput} from 'ink';
+
+const Example = () => {
+	const {focus} = useFocusManager();
+
+	useInput(input => {
+		if (input === 's') {
+			// Focus the component with focus ID 'someId'
+			focus('someId');
+		}
+	});
 
 	return …
 };
@@ -1748,6 +1817,8 @@ You can even inspect and change the props of components, and see the results imm
 - [ink-quicksearch-input](https://github.com/Eximchain/ink-quicksearch-input) - Select component with fast quicksearch-like navigation.
 - [ink-confirm-input](https://github.com/kevva/ink-confirm-input) - Yes/No confirmation input.
 - [ink-syntax-highlight](https://github.com/vsashyn/ink-syntax-highlight) - Code syntax highlighting.
+- [ink-form](https://github.com/lukasbach/ink-form) - Form component.
+- [ink-task-list](https://github.com/privatenumber/ink-task-list) - Task list component.
 
 ## Useful Hooks
 
